@@ -61,7 +61,7 @@
 
   * Katherine - silence. no lyric music soft. water. medications/otcs. starbucks. pom breaks.
 
-  ** Vagal Exercises:**     
+  * Vagal Exercises:     
       * skull ice pack
       * 5 min cold shower break
       * brushing teeth
