@@ -26,6 +26,6 @@ class Game
     guess = gets.chomp
   end
 
-  def
+
 
 end
