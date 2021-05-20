@@ -1,7 +1,8 @@
 require 'pry'
 
 class Compare
-  attr_reader :random_sequence, :guess_count, :user_guess
+  attr_reader :random_sequence, :guess_count
+  attr_accessor :user_guess
   def initialize(random_sequence)
     @random_sequence = random_sequence
     @guess_count = 0
