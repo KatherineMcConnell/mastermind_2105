@@ -1,5 +1,6 @@
 class Messages
 
+
   def initialize
 
   end
@@ -35,5 +36,8 @@ class Messages
   def winner_message
     print "\n\n\n Congratulations! You guessed the sequence \n\n\n #{x} \n\n\n in #{x} guesses over #{x} minutes, #{x} seconds. \n\n\n Do you want to (p)lay again or (q)uit?"
   end
+
+
+  def
 
 end
