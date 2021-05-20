@@ -1,63 +1,47 @@
 class Game
   def initialize
-    @code_breaker_input #??
+    @player = Player.new
   end
 
   def start
       p message.welcome
+      start_menu
   end
 
   def start_menu
-    @code_breaker_input = gets.chomp
-    self.quit
-    self.instructions
-    self.play
-    self.cheat
-
-  end
-
-  def quit
-    #double check calling class variables inside class
-    if @code_breaker_input == 'q' || 'quit'
-      p message.quit
-      exit
+    if @player.start_menu_inputs == true
+      if @player.quit == true
+          exit
+      elsif @player.instructions == true
+          messages.instructions
+      elsif @player.play == true
+          messages.beginner_sequence_message
+      elsif @player.cheat == true
+          messages.cheat_message
+      else
+          print "Invalid_input"
+      end
     end
   end
 
-  def instructions
-    if @code_breaker_input == 'i' || 'instructions'
-      p message.instructions
-    end
-  end
-
-  def play
-    if @code_breaker_input == 'p' || 'play'
-      p message.beginner_sequence
-      # run method that grabs user guess
-    end
-  end
-
-  def cheat
-    if @code_breaker_input == 'c' || 'cheat'
-      p message.cheat
-    end
-  end
-
-  def invalid_input
-    if !@code_breaker_input == 'q' || 'quit' || 'i' || 'instructions' || 'p' || 'play' || 'c' || 'cheat'
-      p message.invalid_input
-    end
+  def guess_again
   end
 
   def game_flow
-    if guess != message.correct_guess
+    if guess != sequence.random_sequence
       p message.feedback
-      guess_again
-    if guess == message.correct_guess
+      # guess_again
+    elsif guess == @player.too_long
+      p message.too_long
+      #guess_again
+    elsif guess == @player.too_short
+      p message.too_short
+
+    elsif guess == sequence.random_sequence
       p message.correct_guess
-      start_menu
+      @player.play
+      @player.quit
     end
-
-
+  end
 
 end

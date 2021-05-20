@@ -18,7 +18,7 @@ class Messages
   end
 
   def feedback_message
-    print "\n\n\n #{x} has #{x} of the correct elements with #{x} in the correct positions\n You've guessed #{x} times \n\n\n "
+    print "\n\n\n #{@user_input} has #{x} of the correct elements with #{x} in the correct positions\n You've guessed #{x} times \n\n\n "
   end
 
   def cheat_message
@@ -36,8 +36,5 @@ class Messages
   def winner_message
     print "\n\n\n Congratulations! You guessed the sequence \n\n\n #{x} \n\n\n in #{x} guesses over #{x} minutes, #{x} seconds. \n\n\n Do you want to (p)lay again or (q)uit?"
   end
-
-
-  def
 
 end
