@@ -10,7 +10,7 @@ class Compare
   end
 
   def get_guess
-    @user_guess = 'gggg'.split("") #gets.chomp
+    @user_guess = gets.chomp.split("")
     #binding.pry
     if @user_guess.count == 4 && self.is_lowercase? == true
       @user_guess
@@ -19,8 +19,6 @@ class Compare
   end
 
   def is_lowercase?
-    #binding.pry
-    #use all? enumerable to check if all the strings in the user_guess array are
     @user_guess.all? { |character| character == character.downcase }
   end
 
@@ -29,23 +27,23 @@ class Compare
   end
 
   def character_match
-    random_sequence.find_all do |character|
-      user_guess.include?(character)
+    @random_sequence.find_all do |character|
+      @user_guess.include?(character)
     end
   end
 
   def index_match
-    matched_characters = []
-    if random_sequence[0] == user_guess[0]
-      matched_characters << random_sequence[0]
-    elsif random_sequence[1] == user_guess[1]
-      matched_characters << random_sequence[1]
-    elsif random_sequence[2] == user_guess[2]
-      matched_characters << random_sequence[2]
-    elsif random_sequence[3] == user_guess[3]
-      matched_characters << random_sequence[3]
+    @matched_characters = []
+    if @random_sequence[0] == @user_guess[0]
+      @matched_characters << @random_sequence[0]
+    elsif @random_sequence[1] == @user_guess[1]
+      @matched_characters << @random_sequence[1]
+    elsif @random_sequence[2] == @user_guess[2]
+      @matched_characters << @random_sequence[2]
+    elsif @random_sequence[3] == @user_guess[3]
+      @matched_characters << @random_sequence[3]
     end
-    return matched_characters
+    return @matched_characters
   end
 
   def user_won?

@@ -20,13 +20,15 @@ RSpec.describe Compare do
   it 'checks lowercase format for user guess' do
     compare = Compare.new(['g','b','y','y'])
 
-    compare.get_guess
+    compare.user_guess = ['g', 'g', 'g', 'g']
 
     expect(compare.is_lowercase?).to be true
   end
 
   it 'can get user guess' do
     compare = Compare.new(['g','b','y','y'])
+
+    compare.user_guess = ['g', 'g', 'g', 'g']
 
     expect(compare.get_guess).to eq(['g', 'g', 'g', 'g'])
   end
@@ -41,7 +43,7 @@ RSpec.describe Compare do
   it 'can find matching characters' do
     compare = Compare.new(['g','b','y','y'])
 
-    compare.get_guess
+    compare.user_guess = ['g', 'g', 'g', 'g']
 
     expect(compare.character_match).to eq(['g'])
   end
@@ -49,7 +51,7 @@ RSpec.describe Compare do
   it 'can find matching character indexes' do
     compare = Compare.new(['g','b','y','y'])
 
-    compare.get_guess
+    compare.user_guess = ['g', 'g', 'g', 'g']
 
     expect(compare.index_match).to eq(['g'])
   end
