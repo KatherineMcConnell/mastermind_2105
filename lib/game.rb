@@ -57,7 +57,6 @@ class Game
       p message.correct_guess
       start_menu
     end
-  end
 
 
 
