@@ -1,3 +1,6 @@
+require './lib/player'
+require './lib/messages'
+
 require './lib/game'
 
 RSpec.describe Game do
