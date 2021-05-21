@@ -1,48 +1,58 @@
 class Game
+  attr_reader :player, :guess_count
   def initialize
+    @player = Player.new
+    @guess_count = 0
   end
 
   def start
       p message.welcome
-      start_menu
+      self.start_menu
   end
 
   def start_menu
-    if @player.start_menu_inputs == true
-      if @player.quit == true
-          exit
-      elsif @player.instructions == true
-          messages.instructions
-      elsif @player.play == true
-          messages.beginner_sequence_message
-      elsif @player.cheat == true
-          messages.cheat_message
-      else
-          print "Invalid_input"
-      end
+    @player.get_user_input
+    if @player.quit == true
+        messages.exit
+    elsif @player.instructions == true
+        messages.instructions
+    elsif @player.play == true
+        messages.beginner_sequence_message
+        sequence.randomize_characters
+        self.game_flow
+    elsif @player.cheat == true
+        messages.cheat_message
+    else
+        messages.invalid_input
     end
-  end
-
-  def guess_again
   end
 
   def game_flow
-    if guess != sequence.random_sequence
-      p message.feedback
-      # guess_again
-    elsif guess == @player.too_long
-      p message.too_long
-      #guess_again
-    elsif guess == @player.too_short
-      p message.too_short
+    if @player.user_input != @player.start_menu_inputs
 
-    elsif guess == sequence.random_sequence
-      p message.correct_guess
-      @player.play
-      @player.quit
+      loop do
+        @player.get_user_input
+        @guess_count += 1
+
+        if  @player.too_long == true
+          p messages.too_long
+        elsif  @player.too_short == false
+          p messages.too_short
+        elsif @player.user_input != sequence.random_sequence
+          p messages.feedback
+        end
+
+        if @compare.user_won? == true
+          p messages.winner_message
+          self.start_menu
+          break
+        end
+      end
+
+    elsif @player.user_input == @player.start_menu_inputs
+      self.start_menu
     end
   end
-
 end
 
 ***********************************************************************

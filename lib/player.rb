@@ -1,7 +1,11 @@
 class Player
 
   def initialize
-  @user_input = gets.chomp
+
+  end
+
+  def get_user_input
+    @user_input = gets.chomp
   end
 
   def start_menu_inputs

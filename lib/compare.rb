@@ -4,25 +4,7 @@ class Compare
   def initialize(random_sequence)
     @random_sequence = random_sequence
     @guess_count = 0
-    @user_guess = []
-  end
-
-  def get_guess
-    #km - changed user_guess to upcase to solve case insensitive
-    @user_guess = gets.chomp.split("").upcase
-    #binding.pry
-    if @user_guess.count == 4 && self.is_lowercase? == true
-      @user_guess
-      #all lowercase stuff needs to go
-    end
-    #this method will forward to messages class to print correct error message
-  end
-
-  # 'guesses are insensitive'per instructions
-  def is_lowercase?
-    @user_guess.all? { |character| character == character.downcase }
-  end
-
+    
   def guess_counter
     @guess_count += 1
   end
