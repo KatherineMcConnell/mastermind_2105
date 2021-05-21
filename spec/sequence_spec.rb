@@ -12,7 +12,7 @@ RSpec.describe Sequence do
 
   it 'has an array of characters' do
 
-    expect(@sequence.characters).to eq(["r","g","b","y"])
+    expect(@sequence.characters).to eq(["R","G","B","Y"])
   end
 
   it 'starts with an empty array' do
@@ -23,7 +23,7 @@ RSpec.describe Sequence do
   it 'can randomize_characters' do
     @sequence.randomize_characters
 
-    expect(@sequence.random_sequence).not_to eq(["r","g","b","y"])
+    expect(@sequence.random_sequence).not_to eq(["R","G","B","Y"])
   end
 
 end

@@ -44,3 +44,32 @@ class Game
   end
 
 end
+
+***********************************************************************
+class Game
+  attr_reader:
+  def initialize
+  end
+
+  #the method start begins the game
+  def start
+    #welcome message prints asking for user to choose to play, quit, or go to instructions
+    #,but what if the don't hit one of these buttons?
+    # if user_input == p
+    # first_turn
+    # if user_input == i
+    # print instructions_message
+    #print welcome_message
+    # if user_input == q
+    # exit!
+    # else \n\n\nInvalid_input\n\n\n
+  end
+
+  def first_turn
+    #print beginner_sequence_message
+    #user_input = gets.chomp
+    #after they make their first guess is when we will want to start timing them
+  end
+
+  
+end

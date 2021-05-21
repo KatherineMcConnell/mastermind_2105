@@ -1,5 +1,3 @@
-require 'pry'
-
 class Compare
   attr_reader :random_sequence, :guess_count
   attr_accessor :user_guess
@@ -10,14 +8,17 @@ class Compare
   end
 
   def get_guess
-    @user_guess = gets.chomp.split("")
+    #km - changed user_guess to upcase to solve case insensitive
+    @user_guess = gets.chomp.split("").upcase
     #binding.pry
     if @user_guess.count == 4 && self.is_lowercase? == true
       @user_guess
+      #all lowercase stuff needs to go
     end
     #this method will forward to messages class to print correct error message
   end
 
+  # 'guesses are insensitive'per instructions
   def is_lowercase?
     @user_guess.all? { |character| character == character.downcase }
   end
@@ -33,6 +34,7 @@ class Compare
   end
 
   def index_match
+    #km- I know we can use .zip somehow to compare here to shorten this.
     @matched_characters = []
     if @random_sequence[0] == @user_guess[0]
       @matched_characters << @random_sequence[0]
