@@ -1,8 +1,10 @@
+require './lib/sequence'
 
 class Message
   #change calling class instance everywhere
-  def initialize(sequence, player)
-    @sequence = sequence
+  attr_reader :player
+  def initialize(player)
+    @sequence = Sequence.new
     @player = player
   end
 
@@ -38,7 +40,7 @@ class Message
     print "\n\n\n Congratulations! You guessed the sequence \n\n\n #{x} \n\n\n in #{x} guesses over #{x} minutes, #{x} seconds. \n\n\n Do you want to (p)lay again or (q)uit?"
   end
 
-  def invalid_input_message
+  def invalid_input
     print "This input is invalid. Please try again."
   end
 

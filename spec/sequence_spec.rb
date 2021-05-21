@@ -15,11 +15,6 @@ RSpec.describe Sequence do
     expect(@sequence.characters).to eq(["R","G","B","Y"])
   end
 
-  it 'starts with an empty array' do
-
-    expect(@sequence.random_sequence).to eq([])
-  end
-
   it 'can randomize_characters' do
     @sequence.randomize_characters
 
