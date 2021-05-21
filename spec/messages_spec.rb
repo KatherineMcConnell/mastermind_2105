@@ -29,6 +29,7 @@ RSpec.describe Messages do
   it 'prints feedback message' do
     # guess sequece has # of correct elem w/ num # in the correct positions.\n
     # You've taken x# of guesses
+  end
 
   it 'prints cheat interpolating random_sequence compare class instance' do
 
@@ -55,4 +56,3 @@ RSpec.describe Messages do
     expect().to eq()
   end
 end
-
