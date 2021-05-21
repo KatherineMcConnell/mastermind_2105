@@ -1,11 +1,13 @@
 require './lib/sequence'
+require './lib/compare'
 
 class Message
   #change calling class instance everywhere
-  attr_reader :player
-  def initialize(player)
+  attr_reader :sequence, :compare
+  def initialize (user_input)
+    @user_input = user_input
     @sequence = Sequence.new
-    @player = player
+    @compare = Compare.new(@user_input)
   end
 
   def welcome_message
@@ -44,7 +46,7 @@ class Message
     print "This input is invalid. Please try again."
   end
 
-  def exit
+  def exit_message
     print "Thanks for visiting Mastermind"
   end
 
