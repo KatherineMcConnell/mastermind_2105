@@ -1,13 +1,42 @@
+require 'runner'
+
 class Compare
-  attr_reader :random_sequence, :guess_count
-  attr_accessor :user_guess
-  def initialize(random_sequence)
-    @random_sequence = random_sequence
-    @guess_count = 0
+  attr_reader :sequence, :user_input
+  def initialize(user_input)
+    @sequence = Sequence.new.randomize_characters
+    @user_input = user_input
   end
 
-  def guess_counter
-    @guess_count += 1
+  def start_menu_inputs
+    @user_input == ('q' || 'quit' || 'i' || 'instructions' || 'p' || 'play' || 'c' || 'cheat')
+  end
+
+  def is_guess?
+    !@user_input == ('q' || 'quit' || 'i' || 'instructions' || 'p' || 'play' || 'c' || 'cheat')
+  end
+
+  def too_long
+    @user_input.size > 4
+  end
+
+  def too_short
+    @user_input.size < 5
+  end
+
+  def is_quit?
+    @user_input == ('q' || 'quit')
+  end
+
+  def is_instructions?
+    @user_input == ('i' || 'instructions')
+  end
+
+  def is_play?
+    @user_input == ('p' || 'play')
+  end
+
+  def is_cheat?
+    @user_input == ('c' || 'cheat')
   end
 
   def character_match
@@ -34,4 +63,6 @@ class Compare
   def user_won?
     @user_guess == @random_sequence
   end
+
+
 end
