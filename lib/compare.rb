@@ -1,13 +1,10 @@
-require 'pry'
-
 class Compare
   attr_reader :random_sequence, :guess_count
   attr_accessor :user_guess
   def initialize(random_sequence)
     @random_sequence = random_sequence
     @guess_count = 0
-  end
-
+    
   def guess_counter
     @guess_count += 1
   end
@@ -19,6 +16,7 @@ class Compare
   end
 
   def index_match
+    #km- I know we can use .zip somehow to compare here to shorten this.
     @matched_characters = []
     if @random_sequence[0] == @user_guess[0]
       @matched_characters << @random_sequence[0]

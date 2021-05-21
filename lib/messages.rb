@@ -1,4 +1,6 @@
-class Messages
+
+class Message
+  #change calling class instance everywhere
   def initialize(sequence, player)
     @sequence = sequence
     @player = player
