@@ -21,4 +21,5 @@ RSpec.describe Sequence do
     expect(@sequence.random_sequence).not_to eq(["R","G","B","Y"])
   end
 
+
 end
