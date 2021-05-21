@@ -3,57 +3,60 @@ require './lib/player'
 
 class Game
   attr_reader :player, :guess_count, :message
-  def initialize
+  def initialize (message)
+    @message = message
     @guess_count = 0
-    @message = Message.new(player = Player.new)
   end
 
   def start
-      p message.welcome_message
-      self.start_menu
+      p @message.welcome_message
   end
 
-  def start_menu(user_input)
-    @player.get_user_input
-    if @player.quit == true
-        messages.exit
-    elsif @player.instructions == true
-        messages.instructions
-    elsif @player.play == true
-        messages.beginner_sequence_message
-        sequence.randomize_characters
-        self.game_flow
-    elsif @player.cheat == true
-        messages.cheat_message
+  def start_menu
+    if @message.compare.is_quit? == true
+        message.exit_message
+    elsif @message.compare.is_instructions? == true
+        message.instructions_message
+    elsif @message.compare.is_play? == true
+      @message.sequence.randomize_characters
+      message.beginner_sequence_message
+    elsif @message.compare.is_cheat? == true
+        message.cheat_message
     else
-        messages.invalid_input
+        message.invalid_input
     end
   end
 
   def game_flow
-    if @player.user_input != @player.start_menu_inputs
-
-      loop do
-        @player.get_user_input
-        @guess_count += 1
-
-        if  @player.too_long == true
-          p messages.too_long
-        elsif  @player.too_short == false
-          p messages.too_short
-        elsif @player.user_input != sequence.random_sequence
-          p messages.feedback
-        end
-
-        if @compare.user_won? == true
-          p messages.winner_message
-          self.start_menu
-          break
-        end
+    if @message.compare.is_guess? == true
+      @guess_count += 1
+      if @message.compare.too_long == true
+        @message.too_long
+      elsif  @message.compare.too_short == true
+        @messages.too_short
+      elsif @messages.compare.user_won? == false
+        @messages.feedback
       end
 
-    elsif @player.user_input == @player.start_menu_inputs
+    elsif @message.compare.start_menu_inputs == true
       self.start_menu
+    else
+      @message.invalid_input
     end
+  end
+
+  def end_game
+    if @message.compare.is_quit? == true
+       @message.exit_message
+    end
+  end
+
+  def time_start
+    @start_time = Time.now
+  end
+
+  def total_time_elapsed
+    @end_time = Time.now
+    @total_time = @end_time - @start_time
   end
 end

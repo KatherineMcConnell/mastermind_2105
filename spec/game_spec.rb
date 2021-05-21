@@ -4,52 +4,67 @@ require './lib/game'
 
 RSpec.describe Game do
   it 'exists' do
-    game = Game.new
+    game = Game.new(Message.new('test'))
 
     expect(game).to be_an_instance_of(Game)
   end
 
   it 'has attributes' do
-    game = Game.new
+    game = Game.new(Message.new('test'))
 
     expect(game.guess_count).to eq(0)
-    expect(game.message.player).to be_an_instance_of(Player)
+    expect(game.message).to be_an_instance_of(Message)
   end
 
   it 'can start' do
-    
+    message = Message.new('test')
+    game = Game.new(message)
+
+    expect(game.start).to eq(message.welcome_message)
   end
 
-  it 'has a menu with choices' do
-    game = Game.new
+  it 'start menu quits' do
+    message = Message.new('q')
+    game = Game.new(message)
 
-    game.player.user_input = 'q'
+    expect(game.start_menu).to eq(game.message.exit_message)
+  end
 
-    expect(game.start_menu).to eq(game.message.exit)
-
-    game.player.user_input = 'i'
+  it 'start menu prints instructions' do
+    message = Message.new('i')
+    game = Game.new(message)
 
     expect(game.start_menu).to eq(game.start)
+  end
 
-    game.player.user_input = 'p'
+  it 'start menu plays' do
+    message = Message.new('p')
+    game = Game.new(message)
 
-    expect(game.start_menu).to eq(game.message.beginner_sequence)
+    expect(game.start_menu).to eq(game.message.beginner_sequence_message)
+  end
 
-    game.player.user_input = 'ilsufoiau'
+  it 'start menu has invalid inputs' do
+    message = Message.new('ilsufoiau')
+    game = Game.new(message)
 
     expect(game.start_menu).to eq(game.message.invalid_input)
-
   end
 
-  xit 'can play a game' do
-    game = Game.new
+  it 'can keep guess count' do
+    message = Message.new('gyyb')
+    game = Game.new(message)
 
+    game.game_flow
+    expect(game.guess_count).to eq(1)
   end
 
-  xit 'prints message & records input' do
-    game = Game.new
+  it 'can end the game' do
+    message = Message.new('q')
+    game = Game.new(message)
 
-    expect(game.start).to eq()
-
+    expect(game.end_game).to eq(game.message.exit_message)
   end
+
+
 end
