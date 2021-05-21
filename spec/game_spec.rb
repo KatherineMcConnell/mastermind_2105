@@ -1,6 +1,5 @@
 require './lib/player'
 require './lib/messages'
-
 require './lib/game'
 
 RSpec.describe Game do
@@ -18,6 +17,8 @@ RSpec.describe Game do
   end
 
   it 'can start' do
+
+    expect().to eq()
   end
 
   it 'has a menu' do

@@ -10,7 +10,7 @@ class Game
       self.start_menu
   end
 
-  def start_menu
+  def start_menu(user_input)
     @player.get_user_input
     if @player.quit == true
         messages.exit
