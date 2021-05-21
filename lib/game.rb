@@ -1,12 +1,15 @@
+require './lib/messages'
+require './lib/player'
+
 class Game
-  attr_reader :player, :guess_count
+  attr_reader :player, :guess_count, :message
   def initialize
-    @player = Player.new
     @guess_count = 0
+    @message = Message.new(player = Player.new)
   end
 
   def start
-      p message.welcome
+      p message.welcome_message
       self.start_menu
   end
 
@@ -53,33 +56,4 @@ class Game
       self.start_menu
     end
   end
-end
-
-***********************************************************************
-class Game
-  attr_reader:
-  def initialize
-  end
-
-  #the method start begins the game
-  def start
-    #welcome message prints asking for user to choose to play, quit, or go to instructions
-    #,but what if the don't hit one of these buttons?
-    # if user_input == p
-    # first_turn
-    # if user_input == i
-    # print instructions_message
-    #print welcome_message
-    # if user_input == q
-    # exit!
-    # else \n\n\nInvalid_input\n\n\n
-  end
-
-  def first_turn
-    #print beginner_sequence_message
-    #user_input = gets.chomp
-    #after they make their first guess is when we will want to start timing them
-  end
-
-  
 end

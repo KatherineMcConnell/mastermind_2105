@@ -4,7 +4,8 @@ class Compare
   def initialize(random_sequence)
     @random_sequence = random_sequence
     @guess_count = 0
-    
+  end
+
   def guess_counter
     @guess_count += 1
   end
