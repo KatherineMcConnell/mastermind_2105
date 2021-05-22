@@ -1,37 +1,93 @@
+#require './runner'
+require 'pry'
+
 class Compare
-  attr_reader :random_sequence, :guess_count
-  attr_accessor :user_guess
-  def initialize(random_sequence)
-    @random_sequence = random_sequence
+  attr_reader :sequence, :guess_count, :start_menu_inputs, :player
+  def initialize(sequence)
+    @sequence = sequence
+    @player = Player.new
+    @start_menu_inputs = ['q', 'quit', 'i','instructions', 'p', 'play', 'c', 'cheat']
     @guess_count = 0
+  end
+
+  def is_menu_input?
+    @start_menu_inputs.include?(@player.user_input)
+  end
+
+  def is_guess?
+    !@start_menu_inputs.include?(@player.user_input)
+  end
+
+  def too_long
+    @player.user_input.size > 4
+  end
+
+  def too_short
+    @player.user_input.size < 4
+  end
+
+  def too_long_or_short?
+    @player.user_input.size != 4
+  end
+
+  def is_quit?
+    #binding.pry
+    ['q', 'quit'].include?(@player.user_input)
+  end
+
+  def is_instructions?
+    ['i', 'instructions'].include?(@player.user_input)
+  end
+
+  def is_play?
+    ['p', 'play'].include?(@player.user_input)
+  end
+
+  def is_cheat?
+    ['c', 'cheat'].include?(@player.user_input)
+  end
+
+  def character_match(user_input)
+    user_guess = user_input.split("")
+    sequence.intersection(user_guess)
+    #binding.pry
+  end
+
+  def index_match(user_input)
+    user_guess = user_input.split("")
+    #km- I know we can use .zip somehow to compare here to shorten this.
+    matched_characters = []
+    #binding.pry
+    if @sequence[0] == user_guess[0]
+      matched_characters << @sequence[0]
+    end
+    if @sequence[1] == user_guess[1]
+      matched_characters << @sequence[1]
+    end
+    if @sequence[2] == user_guess[2]
+      matched_characters << @sequence[2]
+    end
+    if @sequence[3] == user_guess[3]
+      matched_characters << @sequence[3]
+    end
+    #binding.pry
+    return matched_characters
+  end
+
+  def user_won?(user_input)
+    user_input == @sequence.join
   end
 
   def guess_counter
     @guess_count += 1
   end
 
-  def character_match
-    @random_sequence.find_all do |character|
-      @user_guess.include?(character)
-    end
+  def time_start
+    @start_time = Time.now
   end
 
-  def index_match
-    #km- I know we can use .zip somehow to compare here to shorten this.
-    @matched_characters = []
-    if @random_sequence[0] == @user_guess[0]
-      @matched_characters << @random_sequence[0]
-    elsif @random_sequence[1] == @user_guess[1]
-      @matched_characters << @random_sequence[1]
-    elsif @random_sequence[2] == @user_guess[2]
-      @matched_characters << @random_sequence[2]
-    elsif @random_sequence[3] == @user_guess[3]
-      @matched_characters << @random_sequence[3]
-    end
-    return @matched_characters
-  end
-
-  def user_won?
-    @user_guess == @random_sequence
+  def total_time_elapsed
+    @end_time = Time.now
+    @total_time = @end_time - @start_time
   end
 end

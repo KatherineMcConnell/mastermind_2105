@@ -3,7 +3,7 @@ class Sequence
               :random_sequence
 
   def initialize
-    @characters = ["R","G","B","Y"]
+    @characters = ["r","g","b","y"]
     @random_sequence = randomize_characters
   end
 

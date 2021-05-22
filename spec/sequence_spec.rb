@@ -12,13 +12,17 @@ RSpec.describe Sequence do
 
   it 'has an array of characters' do
 
-    expect(@sequence.characters).to eq(["R","G","B","Y"])
+    expect(@sequence.characters).to eq(["r","g","b","y"])
   end
 
   it 'can randomize_characters' do
     @sequence.randomize_characters
 
-    expect(@sequence.random_sequence).not_to eq(["R","G","B","Y"])
+    expect(@sequence.randomize_characters).not_to eq(["r","g","b","y"])
   end
 
+  it 'can store random characters' do
+
+    expect(@sequence.random_sequence).to eq(@sequence.random_sequence)
+  end
 end
