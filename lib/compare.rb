@@ -1,18 +1,21 @@
-require 'runner'
+#require './runner'
+require 'pry'
 
 class Compare
-  attr_reader :sequence, :user_input
+  attr_reader :sequence, :user_input, :guess_count
   def initialize(user_input)
-    @sequence = Sequence.new.randomize_characters
+    @sequence = Sequence.new.random_sequence
     @user_input = user_input
+    @start_menu_inputs = ['q', 'quit', 'i', 'instructions', 'p', 'play', 'c', 'cheat']
+    @guess_count = 0
   end
 
-  def start_menu_inputs
-    @user_input == ('q' || 'quit' || 'i' || 'instructions' || 'p' || 'play' || 'c' || 'cheat')
+  def is_menu_input?
+    @start_menu_inputs.include?(@user_input)
   end
 
   def is_guess?
-    !@user_input == ('q' || 'quit' || 'i' || 'instructions' || 'p' || 'play' || 'c' || 'cheat')
+    !@start_menu_inputs.include?(@user_input)
   end
 
   def too_long
@@ -20,49 +23,64 @@ class Compare
   end
 
   def too_short
-    @user_input.size < 5
+    @user_input.size < 4
   end
 
   def is_quit?
-    @user_input == ('q' || 'quit')
+    ['q', 'quit'].include?(@user_input)
   end
 
   def is_instructions?
-    @user_input == ('i' || 'instructions')
+    ['i', 'instructions'].include?(@user_input)
   end
 
   def is_play?
-    @user_input == ('p' || 'play')
+    ['p', 'play'].include?(@user_input)
   end
 
   def is_cheat?
-    @user_input == ('c' || 'cheat')
+    ['c', 'cheat'].include?(@user_input)
   end
 
   def character_match
-    @random_sequence.find_all do |character|
-      @user_guess.include?(character)
+    user_guess = @user_input.split("")
+    #binding.pry
+    @sequence.find_all do |character|
+      user_guess.include?(character)
     end
   end
 
   def index_match
+    user_guess = @user_input.split("")
     #km- I know we can use .zip somehow to compare here to shorten this.
     @matched_characters = []
-    if @random_sequence[0] == @user_guess[0]
-      @matched_characters << @random_sequence[0]
-    elsif @random_sequence[1] == @user_guess[1]
-      @matched_characters << @random_sequence[1]
-    elsif @random_sequence[2] == @user_guess[2]
-      @matched_characters << @random_sequence[2]
-    elsif @random_sequence[3] == @user_guess[3]
-      @matched_characters << @random_sequence[3]
+    #binding.pry
+    if @sequence[0] == user_guess[0]
+      @matched_characters << @sequence[0]
+    elsif @sequence[1] == user_guess[1]
+      @matched_characters << @sequence[1]
+    elsif @sequence[2] == user_guess[2]
+      @matched_characters << @sequence[2]
+    elsif @sequence[3] == user_guess[3]
+      @matched_characters << @rsequence[3]
     end
     return @matched_characters
   end
 
   def user_won?
-    @user_guess == @random_sequence
+    @user_input == @sequence.join
   end
 
+  def guess_counter
+    @guess_count += 1
+  end
 
+  def time_start
+    @start_time = Time.now
+  end
+
+  def total_time_elapsed
+    @end_time = Time.now
+    @total_time = @end_time - @start_time
+  end
 end
