@@ -45,7 +45,7 @@ class Game
       @message.compare.guess_counter
       if @message.compare.too_long_or_short? == true
         @message.too_long_or_short
-      elsif @message.compare.user_won? == false
+      elsif @message.compare.user_won?(@player.user_input) == false
         @message.feedback_message
       end
 

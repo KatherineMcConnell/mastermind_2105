@@ -1,5 +1,6 @@
 require './lib/sequence'
 require './lib/compare'
+require './lib/player'
 require 'rspec'
 
 RSpec.describe Compare do
@@ -13,83 +14,114 @@ RSpec.describe Compare do
   it 'has attributes' do
     compare = Compare.new('gggg')
 
-    expect(compare.user_input).to eq('gggg')
+    expect(compare.sequence).to eq('gggg')
+    expect(compare.start_menu_inputs).to eq(['q', 'quit', 'i','instructions', 'p', 'play', 'c', 'cheat'])
+    expect(compare.guess_count).to eq(0)
   end
 
   it 'can find start menu inputs' do
-    compare = Compare.new('quit')
+    player = Player.new
+    compare = Compare.new('gggg')
+
+    compare.player.user_input = 'quit'
 
     expect(compare.is_menu_input?).to be true
   end
 
   it 'can find guess inputs' do
+    player = Player.new
     compare = Compare.new('gggg')
+
+    compare.player.user_input = 'bybg'
 
     expect(compare.is_guess?).to be true
   end
 
-  it 'can determine if guess is too long' do
-    compare = Compare.new('rgbyb')
+  it 'can determine if guess is too long or short' do
+    player = Player.new
+    compare = Compare.new('gggg')
+
+    compare.player.user_input = 'bybgb'
 
     expect(compare.too_long).to be true
+    expect(compare.too_long_or_short?).to be true
+    expect(compare.too_short).to be false
 
-    compare = Compare.new('gyb')
+    compare.player.user_input = 'byb'
 
     expect(compare.too_long).to be false
-  end
-
-  it "can determine if guess is too short" do
-    compare = Compare.new('gyb')
-
+    expect(compare.too_long_or_short?).to be true
     expect(compare.too_short).to be true
-
-    compare = Compare.new('rgybb')
-
-    expect(compare.too_short).to be false
   end
 
   it 'can find quit inputs' do
-    compare = Compare.new('quit')
+    player = Player.new
+    compare = Compare.new('gggg')
+
+    compare.player.user_input = 'q'
+
+    expect(compare.is_quit?).to be true
+
+    compare.player.user_input = 'quit'
 
     expect(compare.is_quit?).to be true
   end
 
   it 'can find instruction inputs' do
-    compare = Compare.new('i')
+    player = Player.new
+    compare = Compare.new('gggg')
+
+    compare.player.user_input = 'i'
+
+    expect(compare.is_instructions?).to be true
+
+    compare.player.user_input = 'instructions'
 
     expect(compare.is_instructions?).to be true
   end
 
   it 'can find play inputs' do
-    compare = Compare.new('play')
+    player = Player.new
+    compare = Compare.new('gggg')
+
+    compare.player.user_input = 'p'
+
+    expect(compare.is_play?).to be true
+
+    compare.player.user_input = 'play'
 
     expect(compare.is_play?).to be true
 
   end
 
   it 'can find cheat inputs' do
-    compare = Compare.new
+    player = Player.new
+    compare = Compare.new('gggg')
+
+    compare.player.user_input = 'c'
+    expect(compare.is_cheat?).to be true
+
+    compare.player.user_input = 'cheat'
 
     expect(compare.is_cheat?).to be true
   end
 
   it 'can find matching characters' do
-    compare = Compare.new
+    compare = Compare.new('rgyb')
 
-
-    expect(compare.character_match('')).to eq(['g'])
+    expect(compare.character_match('rrby')).to eq(['ryb'])
   end
 
   it 'can find matching indexes' do
-    compare = Compare.new('gggg')
+    compare = Compare.new('rgyb')
 
-    expect(compare.index_match).to eq(['g'])
+    expect(compare.index_match('rrby')).to eq(['r'])
   end
 
   it 'can determine if user guess is correct' do
-    compare = Compare.new('gyby')
+    compare = Compare.new('gggg')
 
-    expect(compare.user_won?).to be true
+    expect(compare.user_won?('gggg')).to be true
   end
 
 end

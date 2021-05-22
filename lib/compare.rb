@@ -55,8 +55,8 @@ class Compare
     binding.pry
   end
 
-  def index_match
-    user_guess = @player.user_input.split("")
+  def index_match(user_input)
+    user_guess = user_input.split("")
     #km- I know we can use .zip somehow to compare here to shorten this.
     matched_characters = []
     #binding.pry
@@ -76,8 +76,8 @@ class Compare
     return matched_characters
   end
 
-  def user_won?
-    @player.user_input == @sequence.join
+  def user_won?(user_input)
+    user_input == @sequence.join
   end
 
   def guess_counter
