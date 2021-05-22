@@ -1,5 +1,6 @@
 class Player
-  attr_reader :user_input
+  #attr_reader :user_input
+  attr_accessor :user_input
   def initialize
     @user_input = ''
   end

@@ -2,7 +2,7 @@
 require 'pry'
 
 class Compare
-  attr_reader :sequence, :guess_count, :player
+  attr_reader :sequence, :guess_count, :start_menu_inputs, :player
   def initialize(sequence)
     @sequence = sequence
     @player = Player.new
@@ -52,7 +52,7 @@ class Compare
     user_guess.find_all do |character|
       @sequence.include?(character)
     end
-    binding.pry
+    #binding.pry
   end
 
   def index_match(user_input)
