@@ -26,27 +26,28 @@ class Compare
     @player.user_input.size < 4
   end
 
+  
   def is_quit?
     #binding.pry
-    'q quit'.include?(@player.user_input)
+    ['q', 'quit'].include?(@player.user_input)
   end
 
   def is_instructions?
-    'i instructions'.include?(@player.user_input)
+    ['i', 'instructions'].include?(@player.user_input)
   end
 
   def is_play?
-    'p play'.include?(@player.user_input)
+    ['p', 'play'].include?(@player.user_input)
   end
 
   def is_cheat?
-    'c cheat'.include?(@player.user_input)
+    ['c', 'cheat'].include?(@player.user_input)
   end
 
   def character_match
     user_guess = @player.user_input.split("")
     #binding.pry
-    @sequence.find_all do |character|
+    @sequence.partition do |character|
       user_guess.include?(character)
     end
   end
@@ -54,18 +55,22 @@ class Compare
   def index_match
     user_guess = @player.user_input.split("")
     #km- I know we can use .zip somehow to compare here to shorten this.
-    @matched_characters = []
+    matched_characters = []
     #binding.pry
     if @sequence[0] == user_guess[0]
-      @matched_characters << @sequence[0]
-    elsif @sequence[1] == user_guess[1]
-      @matched_characters << @sequence[1]
-    elsif @sequence[2] == user_guess[2]
-      @matched_characters << @sequence[2]
-    elsif @sequence[3] == user_guess[3]
-      @matched_characters << @rsequence[3]
+      matched_characters << @sequence[0]
     end
-    return @matched_characters
+    if @sequence[1] == user_guess[1]
+      matched_characters << @sequence[1]
+    end
+    if @sequence[2] == user_guess[2]
+      matched_characters << @sequence[2]
+    end
+    if @sequence[3] == user_guess[3]
+      matched_characters << @sequence[3]
+    end
+    #binding.pry
+    return matched_characters
   end
 
   def user_won?

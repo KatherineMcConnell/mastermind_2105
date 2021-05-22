@@ -12,22 +12,23 @@ class Game
 
   def start
     @message.welcome_message
+    @player.get_user_input
   end
 
   def start_menu
     #binding.pry
-    @player.get_user_input
     if @message.compare.is_quit? == true
       @message.exit_message
     elsif @message.compare.is_instructions? == true
       @message.instructions_message
+      self.play_game
     elsif @message.compare.is_play? == true
       @message.compare.sequence
       @message.beginner_sequence_message
       loop do
         self.game_flow
         if @message.compare.is_quit? == true
-          @message.exit_message
+          #@message.exit_message
           break
         end
       end
@@ -44,9 +45,9 @@ class Game
     if @message.compare.is_guess? == true
       @message.compare.guess_counter
       if @message.compare.too_long == true
-        @message.too_long
+        @message.too_long_message
       elsif @message.compare.too_short == true
-        @message.too_short
+        @message.too_short_message
       elsif @message.compare.user_won? == false
         @message.feedback_message
       end
