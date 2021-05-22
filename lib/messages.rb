@@ -23,7 +23,7 @@ class Message
   end
 
   def feedback_message
-    print "\n\n\n #{@compare.player.user_input} has #{@compare.character_match(@compare.player.user_input)} of the correct elements with #{@compare.index_match(@compare.player.user_input).length} in the correct positions\n You've guessed #{@compare.guess_count} times \n\n\n "
+    print "\n\n\n #{@compare.player.user_input} has #{@compare.character_match(@compare.player.user_input).length} of the correct elements with #{@compare.index_match(@compare.player.user_input).length} in the correct positions\n You've guessed #{@compare.guess_count} times \n\n\n "
   end
 
   def cheat_message
