@@ -6,7 +6,6 @@ class Message
   attr_reader :sequence, :compare
   def initialize (user_input)
     @user_input = user_input
-    @sequence = Sequence.new
     @compare = Compare.new(@user_input)
   end
 
@@ -23,11 +22,11 @@ class Message
   end
 
   def feedback_message
-    print "\n\n\n #{@user_input} has #{x} of the correct elements with #{x} in the correct positions\n You've guessed #{x} times \n\n\n "
+    print "\n\n\n #{@user_input} has #{@compare.character_match.length} of the correct elements with #{@compare.index_match.length} in the correct positions\n You've guessed #{@compare.guess_count} times \n\n\n "
   end
 
   def cheat_message
-    print "The sequence generated was #{x} \n\n\n Would you like to (p)lay, read the (i)nstructions, or (q)uit?\n\n\n"
+    print "The sequence generated was #{@compare.sequence} \n\n\n Would you like to (p)lay, read the (i)nstructions, or (q)uit?\n\n\n"
   end
 
   def too_short_message
@@ -35,11 +34,11 @@ class Message
   end
 
   def too_long_message
-    print "Your guess is too short. Your guess must be a sequence with four elements made up of: \n *(r)ed \n *(g)reen \n *(b)lue \n *(y)ellow. Each color may be used any number of times. Please guess again."
+    print "Your guess is too long. Your guess must be a sequence with four elements made up of: \n *(r)ed \n *(g)reen \n *(b)lue \n *(y)ellow. Each color may be used any number of times. Please guess again."
   end
 
   def winner_message
-    print "\n\n\n Congratulations! You guessed the sequence \n\n\n #{x} \n\n\n in #{x} guesses over #{x} minutes, #{x} seconds. \n\n\n Do you want to (p)lay again or (q)uit?"
+    print "\n\n\n Congratulations! You guessed the sequence \n\n\n #{@compare.sequence} \n\n\n in #{@compare.guess_count} guesses over #{@compare.total_time_elapsed} minutes, #{} seconds. \n\n\n Do you want to (p)lay again or (q)uit?"
   end
 
   def invalid_input
