@@ -28,7 +28,6 @@ class Game
       loop do
         self.game_flow
         if @message.compare.is_quit? == true
-          #@message.exit_message
           break
         end
       end
@@ -44,10 +43,8 @@ class Game
     #binding.pry
     if @message.compare.is_guess? == true
       @message.compare.guess_counter
-      if @message.compare.too_long == true
-        @message.too_long_message
-      elsif @message.compare.too_short == true
-        @message.too_short_message
+      if @message.compare.too_long_or_short? == true
+        @message.too_long_or_short
       elsif @message.compare.user_won? == false
         @message.feedback_message
       end

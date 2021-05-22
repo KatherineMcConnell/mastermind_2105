@@ -22,19 +22,19 @@ class Message
   end
 
   def feedback_message
-    print "\n\n\n #{@compare.player.user_input} has #{@compare.character_match.length} of the correct elements with #{@compare.index_match.length} in the correct positions\n You've guessed #{@compare.guess_count} times \n\n\n "
+    print "\n\n\n #{@compare.player.user_input} has #{@compare.character_match[0].length} of the correct elements with #{@compare.index_match.length} in the correct positions\n You've guessed #{@compare.guess_count} times \n\n\n "
   end
 
   def cheat_message
     print "The sequence generated was #{@compare.sequence} \n\n\n Would you like to (p)lay, read the (i)nstructions, or (q)uit?\n\n\n"
   end
 
-  def too_short_message
-    print "Your guess is too short. Your guess must be a sequence with four elements made up of: \n *(r)ed \n *(g)reen \n *(b)lue \n *(y)ellow. Each color may be used any number of times. Please guess again."
-  end
-
-  def too_long_message
-    print "Your guess is too long. Your guess must be a sequence with four elements made up of: \n *(r)ed \n *(g)reen \n *(b)lue \n *(y)ellow. Each color may be used any number of times. Please guess again."
+  def too_long_or_short
+    if @compare.too_long == true
+      print "Your guess is too long. Your guess must be a sequence with four elements made up of: \n *(r)ed \n *(g)reen \n *(b)lue \n *(y)ellow. Each color may be used any number of times. Please guess again."
+    elsif @compare.too_short == true
+      print "Your guess is too short. Your guess must be a sequence with four elements made up of: \n *(r)ed \n *(g)reen \n *(b)lue \n *(y)ellow. Each color may be used any number of times. Please guess again."
+    end
   end
 
   def winner_message

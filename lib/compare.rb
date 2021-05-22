@@ -26,7 +26,10 @@ class Compare
     @player.user_input.size < 4
   end
 
-  
+  def too_long_or_short?
+    @player.user_input.size != 4
+  end
+
   def is_quit?
     #binding.pry
     ['q', 'quit'].include?(@player.user_input)
