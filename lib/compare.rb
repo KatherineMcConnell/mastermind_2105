@@ -3,10 +3,10 @@ require 'pry'
 
 class Compare
   attr_reader :sequence, :guess_count, :player
-  def initialize
-    @sequence = Sequence.new.random_sequence
+  def initialize(sequence)
+    @sequence = sequence
     @player = Player.new
-    @start_menu_inputs = 'q quit i instructions p play c cheat'
+    @start_menu_inputs = ['q', 'quit', 'i','instructions', 'p', 'play', 'c', 'cheat']
     @guess_count = 0
   end
 
@@ -47,14 +47,11 @@ class Compare
     ['c', 'cheat'].include?(@player.user_input)
   end
 
-  def character_match
-    user_guess = @player.user_input.split("")
+  def character_match(user_input)
+    user_guess = user_input.split("")
     user_guess.find_all do |character|
-      if @sequence.include?(character)
-        user_guess.delete(character)
-      end
+      @sequence.include?(character)
     end
-    4 - user_guess.length
     binding.pry
   end
 

@@ -68,16 +68,16 @@ RSpec.describe Compare do
   end
 
   it 'can find cheat inputs' do
-    compare = Compare.new('c')
+    compare = Compare.new
 
     expect(compare.is_cheat?).to be true
   end
 
   it 'can find matching characters' do
-    compare = Compare.new('gggg')
+    compare = Compare.new
 
 
-    expect(compare.character_match).to eq(['g'])
+    expect(compare.character_match('')).to eq(['g'])
   end
 
   it 'can find matching indexes' do
