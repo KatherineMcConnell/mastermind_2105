@@ -2,13 +2,17 @@ require './lib/game'
 require './lib/sequence'
 require './lib/messages'
 require './lib/compare'
+require 'pry'
 
-game = Game.new.start
+message = Message.new
+game = Game.new(message)
+game.start
 #loop for getting userinfo and sending off
 loop do
-  user_input = gets.chomp.downcase
+  chomp_input = gets.chomp.downcase
+  #binding.pry
   game.game_flow
-  if game.compare.is_quit? == true
+  if game.message.compare.is_quit? == true
     break
   end
 end
