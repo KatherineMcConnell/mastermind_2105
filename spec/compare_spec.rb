@@ -110,6 +110,10 @@ RSpec.describe Compare do
     compare = Compare.new(['r', 'g', 'y', 'b'])
 
     expect(compare.character_match('rrby')).to eq(['r', 'y', 'b'])
+
+    compare = Compare.new(['y', 'b', 'y', 'b'])
+
+    expect(compare.character_match('grby')).to eq(['y', 'b'])
   end
 
   it 'can find matching indexes' do
