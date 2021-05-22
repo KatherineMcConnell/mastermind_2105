@@ -5,7 +5,7 @@ class Game
   attr_reader :player, :guess_count, :message
   def initialize (message)
     @message = message
-    @guess_count = 0
+
   end
 
   def start
@@ -29,7 +29,7 @@ class Game
 
   def game_flow
     if @message.compare.is_guess? == true
-      @guess_count += 1
+      @compare.guess_counter
       if @message.compare.too_long == true
         @message.too_long
       elsif  @message.compare.too_short == true
@@ -51,12 +51,4 @@ class Game
     end
   end
 
-  def time_start
-    @start_time = Time.now
-  end
-
-  def total_time_elapsed
-    @end_time = Time.now
-    @total_time = @end_time - @start_time
-  end
 end
