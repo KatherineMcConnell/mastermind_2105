@@ -5,13 +5,12 @@ class Message
   #change calling class instance everywhere
   attr_reader :sequence, :compare
   def initialize
-    #@compare = Compare.new
+    @compare = Compare.new
     #@user_input = @compare.user_input
   end
 
   def welcome_message
     print "\n\n\n Welcome to MASTERMIND\n\n\n Would you like to (p)lay, read the (i)nstructions, or (q)uit?\n\n\n"
-    @compare = Compare.new(gets.chomp)
   end
 
   def instructions_message
@@ -23,7 +22,7 @@ class Message
   end
 
   def feedback_message
-    print "\n\n\n #{@compare.user_input} has #{@compare.character_match.length} of the correct elements with #{@compare.index_match.length} in the correct positions\n You've guessed #{@compare.guess_count} times \n\n\n "
+    print "\n\n\n #{@compare.player.user_input} has #{@compare.character_match.length} of the correct elements with #{@compare.index_match.length} in the correct positions\n You've guessed #{@compare.guess_count} times \n\n\n "
   end
 
   def cheat_message

@@ -2,48 +2,49 @@
 require 'pry'
 
 class Compare
-  attr_reader :sequence, :user_input, :guess_count
-  def initialize(user_input)
+  attr_reader :sequence, :guess_count, :player
+  def initialize
     @sequence = Sequence.new.random_sequence
-    @user_input = user_input
-    @start_menu_inputs = ['q', 'quit', 'i', 'instructions', 'p', 'play', 'c', 'cheat']
+    @player = Player.new
+    @start_menu_inputs = 'q quit i instructions p play c cheat'
     @guess_count = 0
   end
 
   def is_menu_input?
-    @start_menu_inputs.include?(@user_input)
+    @start_menu_inputs.include?(@player.user_input)
   end
 
   def is_guess?
-    !@start_menu_inputs.include?(@user_input)
+    !@start_menu_inputs.include?(@player.user_input)
   end
 
   def too_long
-    @user_input.size > 4
+    @player.user_input.size > 4
   end
 
   def too_short
-    @user_input.size < 4
+    @player.user_input.size < 4
   end
 
   def is_quit?
-    ['q', 'quit'].include?(@user_input)
+    #binding.pry
+    'q quit'.include?(@player.user_input)
   end
 
   def is_instructions?
-    ['i', 'instructions'].include?(@user_input)
+    'i instructions'.include?(@player.user_input)
   end
 
   def is_play?
-    ['p', 'play'].include?(@user_input)
+    'p play'.include?(@player.user_input)
   end
 
   def is_cheat?
-    ['c', 'cheat'].include?(@user_input)
+    'c cheat'.include?(@player.user_input)
   end
 
   def character_match
-    user_guess = @user_input.split("")
+    user_guess = @player.user_input.split("")
     #binding.pry
     @sequence.find_all do |character|
       user_guess.include?(character)
@@ -51,7 +52,7 @@ class Compare
   end
 
   def index_match
-    user_guess = @user_input.split("")
+    user_guess = @player.user_input.split("")
     #km- I know we can use .zip somehow to compare here to shorten this.
     @matched_characters = []
     #binding.pry
@@ -68,7 +69,7 @@ class Compare
   end
 
   def user_won?
-    @user_input == @sequence.join
+    @player.user_input == @sequence.join
   end
 
   def guess_counter
