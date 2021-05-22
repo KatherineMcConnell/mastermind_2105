@@ -4,17 +4,18 @@ require './lib/compare'
 class Message
   #change calling class instance everywhere
   attr_reader :sequence, :compare
-  def initialize (user_input)
-    @user_input = user_input
-    @compare = Compare.new(@user_input)
+  def initialize
+    #@compare = Compare.new
+    #@user_input = @compare.user_input
   end
 
   def welcome_message
     print "\n\n\n Welcome to MASTERMIND\n\n\n Would you like to (p)lay, read the (i)nstructions, or (q)uit?\n\n\n"
+    @compare = Compare.new(gets.chomp)
   end
 
   def instructions_message
-    print "\n\n\n I will generated a sequence with four elements made up of:(r)ed, \n (g)reen, (b)lue, and (y)ellow. \n\n\n Your objective is to guess the sequence. \n\n\n You will be provided with feedback of the \n\n\n * correct number of colors \n\n\n * the correct of positions those colors are in \n\n\n * the number of guesses you've taken \n\n\n * for each of your guesses. \n\n\n When you have guessed the correct sequence you will also be given the amount of time it took. \n\n\n You may request the sequence be revealed at anytime by pressing 'c' or 'cheat'. \n\n\n Use (q)uit at any time to end the game."
+    print "\n\n\n I will generate a sequence with four elements made up of:(r)ed, \n (g)reen, (b)lue, and (y)ellow. \n\n\n Your objective is to guess the sequence. \n\n\n You will be provided with feedback of the \n\n\n * correct number of colors \n\n\n * the correct of positions those colors are in \n\n\n * the number of guesses you've taken \n\n\n * for each of your guesses. \n\n\n When you have guessed the correct sequence you will also be given the amount of time it took. \n\n\n You may request the sequence be revealed at anytime by pressing 'c' or 'cheat'. \n\n\n Use (q)uit at any time to end the game."
   end
 
   def beginner_sequence_message
@@ -22,7 +23,7 @@ class Message
   end
 
   def feedback_message
-    print "\n\n\n #{@user_input} has #{@compare.character_match.length} of the correct elements with #{@compare.index_match.length} in the correct positions\n You've guessed #{@compare.guess_count} times \n\n\n "
+    print "\n\n\n #{@compare.user_input} has #{@compare.character_match.length} of the correct elements with #{@compare.index_match.length} in the correct positions\n You've guessed #{@compare.guess_count} times \n\n\n "
   end
 
   def cheat_message
