@@ -49,10 +49,13 @@ class Compare
 
   def character_match
     user_guess = @player.user_input.split("")
-    #binding.pry
-    @sequence.partition do |character|
-      user_guess.include?(character)
+    user_guess.find_all do |character|
+      if @sequence.include?(character)
+        user_guess.delete(character)
+      end
     end
+    4 - user_guess.length
+    binding.pry
   end
 
   def index_match
