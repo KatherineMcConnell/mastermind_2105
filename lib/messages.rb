@@ -4,9 +4,10 @@ require './lib/compare'
 class Message
   #change calling class instance everywhere
   attr_reader :sequence, :compare
-  def initialize
-    @compare = Compare.new
+  def initialize(compare)
+    #@compare = Compare.new(sequence.random_sequence)
     #@user_input = @compare.user_input
+    @compare = compare
   end
 
   def welcome_message
@@ -22,7 +23,7 @@ class Message
   end
 
   def feedback_message
-    print "\n\n\n #{@compare.player.user_input} has #{@compare.character_match} of the correct elements with #{@compare.index_match.length} in the correct positions\n You've guessed #{@compare.guess_count} times \n\n\n "
+    print "\n\n\n #{@compare.player.user_input} has #{@compare.character_match(@compare.player.user_input)} of the correct elements with #{@compare.index_match.length} in the correct positions\n You've guessed #{@compare.guess_count} times \n\n\n "
   end
 
   def cheat_message
