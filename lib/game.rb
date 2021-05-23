@@ -35,8 +35,8 @@ class Game
       @message.cheat_message
     else
       @message.invalid_input
-        @player.get_user_input
-        start_menu
+      @player.get_user_input
+      self.start_menu
     end
   end
 
@@ -52,7 +52,7 @@ class Game
       elsif @message.compare.user_won?(@player.user_input) == true
         @message.winner_message
         @player.get_user_input
-        start_menu
+        self.start_menu
       end
 
     elsif @message.compare.is_menu_input? == true
@@ -60,7 +60,7 @@ class Game
     else
       @message.invalid_input
         @player.get_user_input
-        game_flow
+        self.game_flow
     end
   end
 
