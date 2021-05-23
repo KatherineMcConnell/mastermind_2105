@@ -15,6 +15,7 @@ class Compare
   end
 
   def is_guess?
+    require "pry"; binding.pry
     !@start_menu_inputs.include?(@player.user_input)
   end
 
@@ -55,24 +56,27 @@ class Compare
 
   def index_match(user_input)
     user_guess = user_input.split("")
-    #km- I know we can use .zip somehow to compare here to shorten this.
-    matched_characters = []
-    #binding.pry
-    if @sequence[0] == user_guess[0]
-      matched_characters << @sequence[0]
-    end
-    if @sequence[1] == user_guess[1]
-      matched_characters << @sequence[1]
-    end
-    if @sequence[2] == user_guess[2]
-      matched_characters << @sequence[2]
-    end
-    if @sequence[3] == user_guess[3]
-      matched_characters << @sequence[3]
-    end
-    #binding.pry
-    return matched_characters
+    matched_characters = @seqence.zip(user_guess)
+    number_of_index_matches = matched_characters.find_all{ |matched_characters| matched_characters[0] == matched_characters[1].count}
   end
+  #   #km- I know we can use .zip somehow to compare here to shorten this.
+  #   matched_characters = []
+  #   #binding.pry
+  #   if @sequence[0] == user_guess[0]
+  #     matched_characters << @sequence[0]
+  #   end
+  #   if @sequence[1] == user_guess[1]
+  #     matched_characters << @sequence[1]
+  #   end
+  #   if @sequence[2] == user_guess[2]
+  #     matched_characters << @sequence[2]
+  #   end
+  #   if @sequence[3] == user_guess[3]
+  #     matched_characters << @sequence[3]
+  #   end
+  #   #binding.pry
+  #   return matched_characters
+  # end
 
   def user_won?(user_input)
     user_input == @sequence.join
@@ -88,6 +92,7 @@ class Compare
 
   def total_time_elapsed
     @end_time = Time.now
-    @total_time = @end_time - @start_time
+    @total_time.round = @end_time - @start_time
   end
+  #needs to be split into min and then seconds
 end
