@@ -35,6 +35,7 @@ class Game
       @message.cheat_message
     else
       @message.invalid_input
+        @player.get_user_input
     end
   end
 
@@ -57,6 +58,7 @@ class Game
       self.start_menu
     else
       @message.invalid_input
+      user
     end
   end
 
