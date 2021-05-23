@@ -36,6 +36,7 @@ class Game
     else
       @message.invalid_input
         @player.get_user_input
+        start_menu
     end
   end
 
@@ -58,7 +59,8 @@ class Game
       self.start_menu
     else
       @message.invalid_input
-      user
+        @player.get_user_input
+        game_flow
     end
   end
 
