@@ -47,6 +47,10 @@ class Game
         @message.too_long_or_short
       elsif @message.compare.user_won?(@player.user_input) == false
         @message.feedback_message
+      elsif @message.compare.user_won?(@player.user_input) == true
+        @message.winner_message
+        @player.get_user_input
+        start_menu
       end
 
     elsif @message.compare.is_menu_input? == true
