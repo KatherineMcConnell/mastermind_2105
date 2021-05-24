@@ -35,6 +35,8 @@ class Game
       @message.cheat_message
     else
       @message.invalid_input
+      @player.get_user_input
+      self.start_menu
     end
   end
 
@@ -47,39 +49,20 @@ class Game
         @message.too_long_or_short
       elsif @message.compare.user_won?(@player.user_input) == false
         @message.feedback_message
+      elsif @message.compare.user_won?(@player.user_input) == true
+        @message.winner_message
+        @player.get_user_input
+        self.start_menu
       end
 
     elsif @message.compare.is_menu_input? == true
       self.start_menu
     else
       @message.invalid_input
+        @player.get_user_input
+        self.game_flow
     end
   end
-
-  # def game_flow
-  #   binding.pry
-  #   loop do
-  #     @player.get_user_input
-  #     if @message.compare.is_guess? == true
-  #       @compare.guess_counter
-  #       if @message.compare.too_long == true
-  #         @message.too_long
-  #       elsif  @message.compare.too_short == true
-  #         @messages.too_short
-  #       elsif @messages.compare.user_won? == false
-  #         @messages.feedback
-  #       end
-  #     elsif @message.compare.is_menu_input? == true
-  #       self.start_menu
-  #     else
-  #       @message.invalid_input
-  #     end
-  #     if @message.compare.is_quit? == true
-  #       @message.exit_message
-  #       break
-  #     end
-  #   end
-  # end
 
   def play_game
     self.start
@@ -89,6 +72,7 @@ class Game
   def end_game
     if @message.compare.is_quit? == true
        @message.exit_message
+       exit!
     end
   end
 
