@@ -58,10 +58,12 @@ class Compare
   def index_match(user_input)
     #user_guess is coming up as a nil class in here which means user_guess is not getting pulled in here properly hmmm....
     user_guess = user_input.split("")
-    require "pry"; binding.pry
+
     #works in pry??? doesnt accept setting the variable for some reason.
-    comparing = @seqence.zip(user_guess)
+    matched_characters = @sequence.zip(user_guess)
+    # require "pry"; binding.pry
     number_of_index_matches = matched_characters.find_all{ |matched_characters| matched_characters[0] == matched_characters[1].count}
+    number_of_index_matches
   end
 
   def user_won?(user_input)
