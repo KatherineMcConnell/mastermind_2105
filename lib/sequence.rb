@@ -11,5 +11,3 @@ class Sequence
     Array.new(4){@characters.sample}
   end
 end
-
-#p Sequence.new.random_sequence

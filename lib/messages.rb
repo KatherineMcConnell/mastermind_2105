@@ -27,7 +27,7 @@ class Message
   end
 
   def cheat_message
-    print "The sequence generated was #{@compare.sequence} \n\n\n Would you like to (p)lay, read the (i)nstructions, or (q)uit?\n\n\n"
+    print "The sequence generated was #{@compare.sequence}. \n\n Type in your guess."
   end
 
   def too_long_or_short

@@ -31,8 +31,8 @@ class Game
           break
         end
       end
-    elsif @message.compare.is_cheat? == true
-      @message.cheat_message
+    # elsif @message.compare.is_cheat? == true
+    #   @message.cheat_message
     else
       @message.invalid_input
       @player.get_user_input
@@ -43,7 +43,9 @@ class Game
   def game_flow
     @player.get_user_input
     #binding.pry
-    if @message.compare.is_guess? == true
+    if @message.compare.is_cheat? == true
+      @message.cheat_message
+    elsif @message.compare.is_guess? == true
       @message.compare.guess_counter
       if @message.compare.too_long_or_short? == true
         @message.too_long_or_short
