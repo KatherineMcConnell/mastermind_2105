@@ -2,11 +2,8 @@ require './lib/sequence'
 require './lib/compare'
 
 class Message
-  #change calling class instance everywhere
   attr_reader :sequence, :compare
   def initialize(compare)
-    #@compare = Compare.new(sequence.random_sequence)
-    #@user_input = @compare.user_input
     @compare = compare
   end
 
@@ -19,7 +16,7 @@ class Message
   end
 
   def beginner_sequence_message
-    print "\n\n\n I have generated a beginner sequence with four elements made up of: \n\n\n (r)ed, (g)green, (r)red, (b)lue, and (y)ellow. Use (q)uit at any time to end the game.\n\n\n What's your guess?\n\n\n"
+    print "\n\n\n I have generated a beginner sequence with four elements made up of: \n\n\n (r)ed, (g)green, (b)lue, and (y)ellow. Use (q)uit at any time to end the game.\n\n\n What's your guess?\n\n\n"
   end
 
   def feedback_message
@@ -27,7 +24,7 @@ class Message
   end
 
   def cheat_message
-    print "\n\n\n The sequence generated was #{@compare.sequence}. \n\n\n Would you like to (p)play, read the (i)instructions, or (q)quit.\n\n\n"
+    print "\n\n\n The sequence generated was #{@compare.sequence}. \n\n\n Enter this code to win, to easily test winning method.\n\n\n"
   end
 
   def too_long_or_short
@@ -39,7 +36,7 @@ class Message
   end
 
   def winner_message
-    print "\n\n\n Congratulations! You guessed the sequence \n\n\n #{@compare.sequence} \n\n\n in #{@compare.guess_count} guesses over #{@compare.total_time_elapsed} minutes. \n\n\n Do you want to (p)lay again or (q)uit?"
+    print "\n\n\n Congratulations! You guessed the sequence \n\n\n #{@compare.sequence} \n\n\n in #{@compare.guess_count} guesses over #{@compare.total_time_elapsed}. \n\n\n Do you want to (p)lay again or (q)uit?"
   end
 
   def invalid_input
