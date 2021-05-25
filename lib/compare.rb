@@ -47,9 +47,6 @@ class Compare
 
   def character_match(user_input)
     user_guess = user_input.split("")
-    user_guess.find_all do |character|
-      @sequence.include?(character)
-    end
     sequence & user_guess
   end
 
