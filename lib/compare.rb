@@ -54,7 +54,7 @@ class Compare
     user_guess.find_all do |character|
       @sequence.include?(character)
     end
-    sequence.intersection(user_guess)
+    sequence & user_guess
     #binding.pry
   end
 
@@ -97,12 +97,15 @@ class Compare
   end
 
   def time_start
-    @start_time = Time.now
+    @start_time = Time.now if @start_time.nil?
   end
 
   def total_time_elapsed
-    @end_time = Time.now
-    @total_time.round = @end_time - @start_time
+    end_time = Time.now
+    total_time = end_time - @start_time
+    seconds = (total_time % 60).floor
+    minutes = (total_time / 60).floor
+    total_time = "#{minutes} minutes, #{seconds} seconds"
   end
   #needs to be split into min and then seconds
 end
