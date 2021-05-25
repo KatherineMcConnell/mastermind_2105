@@ -15,19 +15,19 @@ class Message
   end
 
   def instructions_message
-    print "\n\n\n I will generate a sequence with four elements made up of:(r)ed, \n (g)reen, (b)lue, and (y)ellow. \n\n\n Your objective is to guess the sequence. \n\n\n You will be provided with feedback of the \n\n\n * correct number of colors \n\n\n * the correct of positions those colors are in \n\n\n * the number of guesses you've taken \n\n\n * for each of your guesses. \n\n\n When you have guessed the correct sequence you will also be given the amount of time it took. \n\n\n You may request the sequence be revealed at anytime by pressing 'c' or 'cheat'. \n\n\n Use (q)uit at any time to end the game."
+    print "\n\n\n I will generate a sequence with four elements made up of:(r)ed, \n (g)reen, (b)lue, and (y)ellow. \n\n\n Your objective is to guess the sequence. \n\n\n You will be provided with feedback for each of your guesses with the: \n\n\n * correct number of colors \n\n\n * the correct of positions those colors are in \n\n\n * the number of guesses you've taken \n\n\n When you have guessed the correct sequence you will also be given the amount of time it took. \n\n\n You may request the sequence be revealed at anytime by pressing 'c' or 'cheat'. \n\n\n Use (q)uit at any time to end the game."
   end
 
   def beginner_sequence_message
-    print "\n\n\n I have generated a beginner sequence with four elements made up of: \n *(r)ed \n *(g)reen \n *(b)lue \n *(y)ellow Use (q)uit at any time to end the game.\n What's your guess?\n\n\n"
+    print "\n\n\n I have generated a beginner sequence with four elements made up of: \n\n\n (r)ed, (g)green, (r)red, (b)lue, and (y)ellow. Use (q)uit at any time to end the game.\n\n\n What's your guess?\n\n\n"
   end
 
   def feedback_message
-    print "\n\n\n #{@compare.player.user_input} has #{@compare.character_match(@compare.player.user_input).size} of the correct elements with #{@compare.index_match(@compare.player.user_input).size} in the correct positions\n You've guessed #{@compare.guess_count} times \n\n\n "
+    print "\n\n\n '#{@compare.player.user_input.upcase}' has #{@compare.character_match(@compare.player.user_input).size} of the correct elements with #{@compare.index_match(@compare.player.user_input).size} in the correct positions \n\n\n You've guessed #{@compare.guess_count} times \n\n\n "
   end
 
   def cheat_message
-    print "The sequence generated was #{@compare.sequence}. \n\n Type in your guess."
+    print "\n\n\n The sequence generated was #{@compare.sequence}. \n\n\n Would you like to (p)play, read the (i)instructions, or (q)quit.\n\n\n"
   end
 
   def too_long_or_short
@@ -39,15 +39,15 @@ class Message
   end
 
   def winner_message
-    print "\n\n\n Congratulations! You guessed the sequence \n\n\n #{@compare.sequence} \n\n\n in #{@compare.guess_count} guesses over #{@compare.total_time_elapsed} minutes, #{} seconds. \n\n\n Do you want to (p)lay again or (q)uit?"
+    print "\n\n\n Congratulations! You guessed the sequence \n\n\n #{@compare.sequence} \n\n\n in #{@compare.guess_count} guesses over #{@compare.total_time_elapsed} minutes. \n\n\n Do you want to (p)lay again or (q)uit?"
   end
 
   def invalid_input
-    print "This input is invalid. Please try again."
+    print "\n\n\n This input is invalid. Please try again. \n\n\n"
   end
 
   def exit_message
-    print "Thanks for visiting Mastermind"
+    print "\n\n\n Thanks for visiting Mastermind! \n\n\n"
   end
 
 end
