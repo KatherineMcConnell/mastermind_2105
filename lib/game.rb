@@ -1,7 +1,5 @@
 require './lib/messages'
 require './lib/player'
-#require './runner'
-require 'pry'
 
 class Game
   attr_reader :player, :guess_count, :message
@@ -16,7 +14,6 @@ class Game
   end
 
   def start_menu
-    #binding.pry
     if @message.compare.is_quit? == true
       @message.exit_message
     elsif @message.compare.is_instructions? == true
@@ -31,8 +28,6 @@ class Game
           break
         end
       end
-    # elsif @message.compare.is_cheat? == true
-    #   @message.cheat_message
     else
       @message.invalid_input
       @player.get_user_input
@@ -40,11 +35,13 @@ class Game
     end
   end
 
+
   def game_flow
+    @message.compare.time_start
     @player.get_user_input
-    #binding.pry
     if @message.compare.is_cheat? == true
       @message.cheat_message
+      self.game_flow
     elsif @message.compare.is_guess? == true
       @message.compare.guess_counter
       if @message.compare.too_long_or_short? == true
