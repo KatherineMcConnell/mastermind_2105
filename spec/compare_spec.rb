@@ -114,12 +114,18 @@ RSpec.describe Compare do
     compare = Compare.new(['y', 'b', 'y', 'b'])
 
     expect(compare.character_match('grby')).to eq(['y', 'b'])
+
+    compare = Compare.new(['b', 'g', 'r', 'b'])
+
+    expect(compare.character_match('bbyb')).to eq(['b', 'b'])
   end
 
   it 'can find matching indexes' do
     compare = Compare.new(['r', 'g', 'y', 'b'])
 
     expect(compare.index_match('rrby')).to eq(['r'])
+    expect(compare.index_match('rryy')).to eq(['r', 'y'])
+    expect(compare.index_match('bbyg')).to eq(['y'])
   end
 
   it 'can determine if user guess is correct' do
