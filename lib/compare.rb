@@ -47,15 +47,20 @@ class Compare
 
   def character_match(user_input)
     user_guess = user_input.split("")
-    sequence & user_guess
+    #binding.pry
+    (sequence & user_guess).flat_map do |character|
+      [character] * [sequence.count(character), user_guess.count(character)].min
+    end
   end
 
   def index_match(user_input)
     user_guess = user_input.split("")
     matched_characters = @sequence.zip(user_guess)
-    matched_characters.find_all do |matched_characters|
-      matched_characters[0] == matched_characters[1]
-    end
+    matched_characters.map do |matched_character|
+      if matched_character[0] == matched_character[1]
+        matched_character[0]
+      end
+    end.flatten.compact
   end
 
   def user_won?(user_input)
