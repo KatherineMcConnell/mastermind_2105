@@ -1,5 +1,3 @@
-require 'pry'
-
 class Compare
   attr_reader :sequence, :guess_count, :start_menu_inputs, :player
   def initialize(sequence)
